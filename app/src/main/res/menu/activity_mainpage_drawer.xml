@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="Dashboard" />
+        <item
+            android:id="@+id/nav_colleges"
+            android:icon="@drawable/ic_school"
+            android:title="My Colleges" />
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/ic_login_square_arrow_button_outline"
+            android:title="Login" />
+
+
+    </group>
+
+    <item android:title="Extras">
+        <menu>
+            <item
+                android:id="@+id/nav_payment"
+                android:icon="@drawable/ic_wallet"
+                android:title="Payment Methods" />
+
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/ic_info"
+                android:title="Help" />
+            <item
+                android:id="@+id/nav_search"
+                android:icon="@drawable/ic_loupe"
+                android:title="Search" />
+
+
+        </menu>
+    </item>
+
+</menu>

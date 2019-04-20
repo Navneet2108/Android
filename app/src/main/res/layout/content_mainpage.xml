@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.MainpageActivity"
+    android:orientation="vertical"
+    android:background="@drawable/gradient"
+    tools:showIn="@layout/app_bar_mainpage">
+
+    <TextView
+        android:id="@+id/textWelcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center"
+        android:text="WELCOME"
+        android:textColor="@color/colorBlack"
+        android:textSize="40dp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/FindCourses"
+        android:layout_width="163dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorBrite"
+        android:text="Course Name"
+        android:textColor="@color/colorBlack"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="149dp"
+        tools:layout_editor_absoluteY="109dp" />
+
+    <!--<Button-->
+        <!--android:id="@+id/Location"-->
+        <!--android:layout_width="163dp"-->
+        <!--android:layout_height="36dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:background="@color/colorBrite"-->
+        <!--android:text="Location"-->
+        <!--android:textColor="@color/colorBlack"-->
+        <!--android:textSize="20dp"-->
+        <!--tools:layout_editor_absoluteX="149dp"-->
+        <!--tools:layout_editor_absoluteY="109dp" />-->
+
+    <Button
+        android:id="@+id/FindColleges"
+        android:layout_width="163dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorBrite"
+        android:text="Find Colleges"
+        android:textColor="@color/colorBlack"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="149dp"
+        tools:layout_editor_absoluteY="109dp" />
+
+    <android.support.design.widget.TabLayout
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBrite">
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nav_Reviews"
+            android:icon="@drawable/ic_review"
+            android:text="Reviews" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Appliedcolleges"
+            android:icon="@drawable/ic_telegram"
+            android:text="Applied Colleges" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Admission"
+            android:icon="@drawable/ic_file"
+            android:text="Admission GuideLines" />
+    </android.support.design.widget.TabLayout>
+
+</LinearLayout>
