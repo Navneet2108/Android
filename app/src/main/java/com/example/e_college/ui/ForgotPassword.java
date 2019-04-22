@@ -56,7 +56,7 @@ void initViews(){
         public void onClick(View v) {
             Intent intent=new Intent(ForgotPassword.this,LoginActivity.class);
             startActivity(intent);
-            finish();
+
         }
     });
 }

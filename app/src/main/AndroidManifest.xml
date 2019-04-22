@@ -15,7 +15,10 @@
         android:roundIcon="@drawable/ic_scholarship"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.PaymentActivity"></activity>
+        <activity android:name=".ui.PaymentCard"></activity>
+        <activity android:name=".ui.AdmissionGuidelines" />
+        <activity android:name=".ui.StudentProfile" />
+        <activity android:name=".ui.PaymentActivity" />
         <activity android:name=".ui.AddLocationActivity" />
         <activity android:name=".ui.AllCollegeActivity" />
         <activity android:name=".ui.CoursesActivity" />
@@ -39,15 +42,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.LoginActivity" />
         <activity android:name=".ui.SplashActivity" />
-
-
-    <activity android:name=".ui.PaymentActivity"/>
-
-        <!-- Add your API key here -->
-        <meta-data
-            android:name="com.razorpay.ApiKey"
-            android:value="rzp_live_ILgsfZCZoFIKMb"
-            />
     </application>
 
 </manifest>

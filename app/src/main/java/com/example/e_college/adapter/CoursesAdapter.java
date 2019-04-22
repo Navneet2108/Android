@@ -68,7 +68,7 @@ public class CoursesAdapter  extends RecyclerView.Adapter<CoursesAdapter.ViewHol
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtTitle = itemView.findViewById(R.id.textViewTitle);
+            txtTitle = itemView.findViewById(R.id.textViewTitleCourse);
         }
     }
 }

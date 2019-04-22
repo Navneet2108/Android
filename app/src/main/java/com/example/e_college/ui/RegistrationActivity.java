@@ -157,7 +157,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                         progressDialog.dismiss();
                         Intent intent = new Intent(RegistrationActivity.this, MainpageActivity.class);
                         startActivity(intent);
-                        finish();
+                      finish();
                     }
                 });
 

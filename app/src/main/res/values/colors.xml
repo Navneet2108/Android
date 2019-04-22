@@ -8,4 +8,11 @@
     <color name="colorgrad1">#1A1818</color>
     <color name="colorgrad2">#F84180</color>
     <color name="colorbg">#7BE4F8</color>
+<!--Payment card-->
+    <color name="cdarkextra">#012e53</color>
+    <color name="cdark">#154a75</color>
+    <color name="clight">#0e4f85</color>
+    <color name="lightgray">#f7f9f7</color>
+    <color name="yellow">#faa61a</color>
+
 </resources>

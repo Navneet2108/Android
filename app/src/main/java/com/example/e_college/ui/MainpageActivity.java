@@ -33,7 +33,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.List;
 
 public class MainpageActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
 
     FirebaseAuth auth;
     TextView txtUsername,txtEmail;
@@ -44,28 +44,11 @@ public class MainpageActivity extends AppCompatActivity
 
     void initViews(){
         btnCourses=findViewById(R.id.FindCourses);
-        btnlocation=findViewById(R.id.Location);
+       // btnlocation=findViewById(R.id.Location);
         btncolleges=findViewById(R.id.FindColleges);
 
-        btnCourses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainpageActivity.this,CoursesActivity.class);
-                startActivity(intent);
-                finish();
-
-            }
-        });
-        btncolleges.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainpageActivity.this,AllCollegeActivity.class);
-                startActivity(intent);
-                finish();
-
-
-            }
-        });
+        btnCourses.setOnClickListener(this);
+        btncolleges.setOnClickListener(this);
 
     }
 
@@ -76,7 +59,7 @@ public class MainpageActivity extends AppCompatActivity
         setContentView(R.layout.activity_mainpage);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        initViews();
         /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener()
             @Override
@@ -102,11 +85,11 @@ public class MainpageActivity extends AppCompatActivity
         auth = FirebaseAuth.getInstance();
         firebaseUser=auth.getCurrentUser();
         firebaseFirestore=FirebaseFirestore.getInstance();
-        getCurrentUserDetail();
+        getCurrentStudentDetail();
 
     }
 
-    void getCurrentUserDetail(){
+    void getCurrentStudentDetail(){
 
         String uid = auth.getCurrentUser().getUid();
         //Toast.makeText(MainpageActivity.this, "Uid is there "+uid, Toast.LENGTH_LONG).show();
@@ -159,7 +142,7 @@ public class MainpageActivity extends AppCompatActivity
             auth.signOut();// Clear Logged In Users Data from Shared Preferences
             Intent intent=new Intent(MainpageActivity.this, LoginActivity.class);
             startActivity(intent);
-            finish();
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -174,17 +157,17 @@ public class MainpageActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
            Intent intent=new Intent(MainpageActivity.this,MainpageActivity.class);
            startActivity(intent);
-           finish();
+
 
         } else if (id == R.id.nav_colleges) {
             Intent intent=new Intent(MainpageActivity.this,AllCollegeActivity.class);
             startActivity(intent);
-            finish();
+
 
         } else if (id == R.id.nav_login) {
             Intent intent=new Intent(MainpageActivity.this,PersonalInfoActivity.class);
             startActivity(intent);
-            finish();
+
 
         } else if (id == R.id.nav_search) {
 
@@ -197,5 +180,24 @@ public class MainpageActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id=v.getId();
+
+        switch(id){
+            case R.id.FindColleges:
+                Intent college=new Intent(MainpageActivity.this,AllCollegeActivity.class);
+                startActivity(college);
+
+                break;
+
+            case R.id.FindCourses:
+                Intent course=new Intent(MainpageActivity.this,CoursesActivity.class);
+                startActivity(course);
+
+                break;
+        }
     }
 }

@@ -87,7 +87,7 @@ public class AddCoursesActivity extends AppCompatActivity implements View.OnClic
         }else {
             Intent intent=new Intent(AddCoursesActivity.this, CoursesActivity.class);
             startActivity(intent);
-            finish();
+
         }
     }
 }
