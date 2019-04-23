@@ -172,6 +172,8 @@ public class MainpageActivity extends AppCompatActivity
         } else if (id == R.id.nav_search) {
 
         } else if (id == R.id.nav_payment) {
+            Intent intent=new Intent(MainpageActivity.this,PaymentCardView.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_help) {
 

@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +41,8 @@ import java.util.jar.Attributes;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.opencensus.stats.View;
+
+import static com.example.e_college.R.layout.list_item;
 
 public class AllCollegeActivity extends AppCompatActivity  implements OnRecyclerItemClickListener {
     RecyclerView recyclerView;
@@ -55,27 +59,30 @@ ProgressDialog progressDialog;
     FirebaseFirestore db;
 
 
-    TextView txtViewTitle;
-
-    TextView txtViewState;
-
-    TextView txtViewCity;
+    //TextView txtViewTitle;
+    //TextView txtViewState;
+    //TextView txtViewCity;
 
     Student student;
+
+
     void initViews() {
-        txtViewTitle=findViewById(R.id.textViewTitle);
-        txtViewState=findViewById(R.id.textViewState);
-        txtViewCity=findViewById(R.id.textViewCity);
+        //txtViewTitle=findViewById(R.id.textViewTitle);
+        //txtViewState=findViewById(R.id.textViewState);
+        //txtViewCity=findViewById(R.id.textViewCity);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setAdapter(collegeAdapter);
-        //recyclerView.setAdapter(coursesAdapter);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
         college = new College();
+
+
+
 
 
 
@@ -87,6 +94,10 @@ ProgressDialog progressDialog;
 
 
     }
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +129,7 @@ ProgressDialog progressDialog;
 
                             }
                             getSupportActionBar().setTitle("Total Colleges: " + colleges.size());
-                            collegeAdapter = new CollegeAdapter(AllCollegeActivity.this,R.layout.list_item,colleges);
+                            collegeAdapter = new CollegeAdapter(AllCollegeActivity.this, list_item,colleges);
                             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(AllCollegeActivity.this);
                             recyclerView.setAdapter(collegeAdapter);
                             collegeAdapter.setOnRecyclerItemClickListener((OnRecyclerItemClickListener) AllCollegeActivity.this);
@@ -164,6 +175,7 @@ ProgressDialog progressDialog;
     public void onItemClick(int position) {
         this.position = position;
         college = colleges.get(position);
+
         Toast.makeText(this,"You Clicked on Position:"+position,Toast.LENGTH_LONG).show();
         //Intent intent=new Intent(AllCollegeActivity.this,AddCoursesActivity.class);
        // startActivity(intent);
@@ -177,6 +189,7 @@ ProgressDialog progressDialog;
             Toast.makeText(AllCollegeActivity.this, "Please Connect to Internet and try again", Toast.LENGTH_LONG).show();
         }*/
         }
+
 
 
 }

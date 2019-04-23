@@ -58,7 +58,7 @@
                         android:padding="2dp">
 
                         <TextView
-                            android:layout_width="0dp"
+                            android:layout_width="13dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="1dp"
                             android:layout_weight="1"
@@ -67,7 +67,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_Name"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_email"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_contact"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -178,7 +178,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_DOB"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -200,7 +200,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_gender"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -239,7 +239,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_father_name"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -261,7 +261,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_mothername"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -300,7 +300,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_religion"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -322,7 +322,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_nationality"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -361,7 +361,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_city"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -383,7 +383,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_state"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -422,7 +422,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_guardian_name"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -444,7 +444,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_guardian_contact"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -483,7 +483,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_collegename"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -505,7 +505,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_course_name"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -545,7 +545,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_matricpercent"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -567,7 +567,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_MatricYOP"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -600,7 +600,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_Twelthpercent"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -622,7 +622,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_TwelthYOP"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -653,7 +653,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_MatricBoard"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -675,7 +675,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
                             android:id="@+id/student_profile_TwelthBoard"
                             android:layout_height="wrap_content"
@@ -706,7 +706,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_Qualification"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -728,7 +728,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_Otherpercent"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -758,17 +758,17 @@
                         android:padding="2dp">
 
                         <TextView
-                            android:layout_width="1dp"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="1dp"
                             android:layout_weight="1"
-                            android:padding="2dp"
                             android:inputType="text"
-                            android:text="Permanent Address : "
+                            android:padding="2dp"
+                            android:text=" Address : "
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_permanent_address"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -800,7 +800,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_pin_code"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -839,7 +839,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_studentType"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -861,7 +861,7 @@
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/student_profile_Batchyear"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
