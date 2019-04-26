@@ -184,11 +184,6 @@ void initViews(){
                             txtguardiancontact.setText(student.GuardianContact);
                             txtDOB.setText(student.DateOfBirth);
                             txtfathername.setText(student.FatherName);
-
-
-
-
-
                         }
                     }
                 });
@@ -213,7 +208,7 @@ void initViews(){
             break;
 
         case R.id.writeReviews:
-            Intent reviews=new Intent(PersonalInfoActivity.this,AdmissionGuidelines.class);
+            Intent reviews=new Intent(PersonalInfoActivity.this,ReviewsActivity.class);
             startActivity(reviews);
 
             break;

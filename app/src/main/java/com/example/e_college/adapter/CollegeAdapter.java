@@ -7,11 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+
 import com.example.e_college.R;
 import com.example.e_college.listener.OnRecyclerItemClickListener;
 import com.example.e_college.model.College;
-import com.example.e_college.ui.AllCollegeActivity;
-
 
 import java.util.ArrayList;
 
@@ -22,17 +22,15 @@ public class CollegeAdapter extends RecyclerView.Adapter<CollegeAdapter.ViewHold
 
     OnRecyclerItemClickListener recyclerItemClickListener;
 
-    public CollegeAdapter(AllCollegeActivity context, int list_item, ArrayList<College> colleges) {
-        this.context = context;
-        this.resources = list_item;
-        this.objects = colleges;
-    }
-
     public void setOnRecyclerItemClickListener(OnRecyclerItemClickListener recyclerItemClickListener) {
         this.recyclerItemClickListener = recyclerItemClickListener;
     }
 
-
+    public CollegeAdapter(Context context, int resources, ArrayList<College> objects) {
+        this.context = context;
+        this.resources = resources;
+        this.objects = objects;
+    }
 
 
     @NonNull

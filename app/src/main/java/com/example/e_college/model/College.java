@@ -1,6 +1,8 @@
 package com.example.e_college.model;
 
-public class College {
+import java.io.Serializable;
+
+public class College implements Serializable {
     public String docID;
     public String name;
     public String email;

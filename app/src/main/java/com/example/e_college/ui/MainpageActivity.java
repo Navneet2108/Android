@@ -50,6 +50,7 @@ public class MainpageActivity extends AppCompatActivity
         btnCourses.setOnClickListener(this);
         btncolleges.setOnClickListener(this);
 
+
     }
 
 
@@ -59,6 +60,7 @@ public class MainpageActivity extends AppCompatActivity
         setContentView(R.layout.activity_mainpage);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("E-College");
         initViews();
         /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener()
@@ -88,6 +90,14 @@ public class MainpageActivity extends AppCompatActivity
         getCurrentStudentDetail();
 
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 102 && resultCode == 202) {
+            String name = data.getStringExtra("keycollegename");
+            btncolleges.setText(name);
+        }
+    }
+
 
     void getCurrentStudentDetail(){
 
@@ -136,14 +146,14 @@ public class MainpageActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }else{
+       // if (id == R.id.action_settings) {
+            //return true;
+        //}else{
             auth.signOut();// Clear Logged In Users Data from Shared Preferences
             Intent intent=new Intent(MainpageActivity.this, LoginActivity.class);
             startActivity(intent);
 
-        }
+        //}
 
         return super.onOptionsItemSelected(item);
     }
@@ -169,19 +179,21 @@ public class MainpageActivity extends AppCompatActivity
             startActivity(intent);
 
 
-        } else if (id == R.id.nav_search) {
+        }// else if (id == R.id.nav_search) {}
 
-        } else if (id == R.id.nav_payment) {
-            Intent intent=new Intent(MainpageActivity.this,PaymentCardView.class);
+         else if (id == R.id.nav_payment) {
+            Intent intent=new Intent(MainpageActivity.this,PaymentCardActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_help) {
+        }// else if (id == R.id.nav_help) {
+            //Intent intent=new Intent(MainpageActivity.this,AllStudentActivity.class);
+            //startActivity(intent);
 
-        }
+        //}
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return true;
+       return true;
     }
 
     @Override
@@ -190,15 +202,21 @@ public class MainpageActivity extends AppCompatActivity
 
         switch(id){
             case R.id.FindColleges:
-                Intent college=new Intent(MainpageActivity.this,AllCollegeActivity.class);
-                startActivity(college);
 
+                Intent intent = new Intent(MainpageActivity.this, AllCollegeActivity.class);
+                startActivityForResult(intent, 102);
                 break;
 
             case R.id.FindCourses:
-                Intent course=new Intent(MainpageActivity.this,CoursesActivity.class);
-                startActivity(course);
+                if(btncolleges.getText().toString()!=null){
+                    Toast.makeText(this,"Please Select your college",Toast.LENGTH_LONG).show();
 
+                }else {
+                    Intent course = new Intent(MainpageActivity.this, CoursesActivity.class);
+                    String name=btncolleges.getText().toString();
+                    course.putExtra("keycollege",name);
+                    startActivity(course);
+                }
                 break;
         }
     }

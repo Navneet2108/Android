@@ -66,6 +66,9 @@ public class CoursesActivity extends AppCompatActivity implements OnRecyclerItem
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please Wait..");
         progressDialog.setCancelable(false);
+
+        Intent rcv = getIntent();
+        String name = rcv.getStringExtra("keycollege");
     }
 
 
@@ -130,13 +133,13 @@ public class CoursesActivity extends AppCompatActivity implements OnRecyclerItem
         this.position = position;
         courses = coursesArrayList.get(position);
         Toast.makeText(this,"You Clicked on Position:"+position,Toast.LENGTH_LONG).show();
-        student.CourseName=txtViewTitleCourse.getText().toString();
+       // student.CourseName=txtViewTitleCourse.getText().toString();
 
-        if (Util.isInternetConnected(this)) {
+       /* if (Util.isInternetConnected(this)) {
             saveCoursedetails();
         } else {
             Toast.makeText(CoursesActivity.this, "Please Connect to Internet and try again", Toast.LENGTH_LONG).show();
-        }
+        }*/
 
 
 

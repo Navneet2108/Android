@@ -16,28 +16,33 @@
             android:id="@+id/nav_login"
             android:icon="@drawable/ic_login_square_arrow_button_outline"
             android:title="Login" />
+        <item
+            android:id="@+id/nav_payment"
+            android:icon="@drawable/ic_wallet"
+            android:title="Payment Methods" />
+
 
 
     </group>
 
-    <item android:title="Extras">
-        <menu>
-            <item
-                android:id="@+id/nav_payment"
-                android:icon="@drawable/ic_wallet"
-                android:title="Payment Methods" />
+    <!--<item android:title="Extras">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_payment"-->
+                <!--android:icon="@drawable/ic_wallet"-->
+                <!--android:title="Payment Methods" />-->
 
-            <item
-                android:id="@+id/nav_help"
-                android:icon="@drawable/ic_info"
-                android:title="Help" />
-            <item
-                android:id="@+id/nav_search"
-                android:icon="@drawable/ic_loupe"
-                android:title="Search" />
+            <!--&lt;!&ndash;<item&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/nav_help"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:icon="@drawable/ic_info"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:title="Help" />&ndash;&gt;-->
+            <!--&lt;!&ndash;<item&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/nav_search"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:icon="@drawable/ic_loupe"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:title="Search" />&ndash;&gt;-->
 
 
-        </menu>
-    </item>
+        <!--</menu>-->
+    <!--</item>-->
 
 </menu>

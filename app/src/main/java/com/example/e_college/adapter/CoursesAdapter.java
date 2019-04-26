@@ -40,7 +40,7 @@ public class CoursesAdapter  extends RecyclerView.Adapter<CoursesAdapter.ViewHol
 
     @NonNull
     @Override
-    public CoursesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+    public CoursesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(resources, parent, false);
         final CoursesAdapter.ViewHolder holder = new CoursesAdapter.ViewHolder(view);
         view.setOnClickListener(new View.OnClickListener() {
@@ -53,8 +53,8 @@ public class CoursesAdapter  extends RecyclerView.Adapter<CoursesAdapter.ViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CoursesAdapter.ViewHolder viewHolder, int i) {
-        Courses courses = objects.get(i);
+    public void onBindViewHolder(@NonNull CoursesAdapter.ViewHolder viewHolder, int position) {
+        Courses courses = objects.get(position);
         viewHolder.txtTitle.setText(courses.Name);
     }
 
