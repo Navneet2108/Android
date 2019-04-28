@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -119,15 +120,27 @@ public class AllCollegeActivity extends AppCompatActivity  implements OnRecycler
         college = colleges.get(position);
         Toast.makeText(this, "You Clicked on Position:" + position, Toast.LENGTH_LONG).show();
 
-        Intent data=new Intent(AllCollegeActivity.this,ReviewsActivity.class);
-        data.putExtra("keycollegename",college.name);
-
-        setResult(201,data);
-        setResult(202,data);
-        finish();
+       // setResult(201,(new Intent(this,ReviewsActivity.class)).putExtra("keycollegename",college.name));
+       // setResult(202,(new Intent(this,MainpageActivity.class)).putExtra("keycollegename1",college.name));
 
 
-    }
+
+           // Intent data = new Intent(AllCollegeActivity.this, ReviewsActivity.class);
+            //data.putExtra("keycollegename", college.name);
+           // setResult(201, data);
+            //finish();
+
+
+            Intent data1 = new Intent(AllCollegeActivity.this, MainpageActivity.class);
+            data1.putExtra("keycollegename", college.name);
+            setResult(202, data1);
+            finish();
+
+        }
+
+
+
+    
 
     void deleteCollegesFromCloudDB(){
         db.collection("colleges").document(college.docID)

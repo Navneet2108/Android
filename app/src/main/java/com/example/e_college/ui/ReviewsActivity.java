@@ -40,7 +40,7 @@ public class ReviewsActivity extends AppCompatActivity implements View.OnClickLi
         eratingreputation = (RatingBar) findViewById(R.id.reputation_rating_bar);
         eratingcampus = (RatingBar) findViewById(R.id.campus_rating_bar);
 
-        submit = (Button) findViewById(R.id.submit_button);
+        submit = (Button) findViewById(R.id.submit);
         choosecollege = (Button) findViewById(R.id.choosecollege);
         viewratings = (Button) findViewById(R.id.Viewratings);
 
@@ -58,18 +58,10 @@ public class ReviewsActivity extends AppCompatActivity implements View.OnClickLi
 
         rating=new Rating();
 
-        eratingplacement.setOnClickListener(this);
-        eratingfaculty.setOnClickListener(this);
-        eratingreputation.setOnClickListener(this);
-        eratingcampus.setOnClickListener(this);
-
         submit.setOnClickListener(this);
         choosecollege.setOnClickListener(this);
         viewratings.setOnClickListener(this);
 
-
-       // String tempholder=getIntent().getStringExtra("Listviewclickvalue");
-       // choosecollege.setText(tempholder);
     }
 
     @Override
@@ -117,9 +109,7 @@ public class ReviewsActivity extends AppCompatActivity implements View.OnClickLi
 
         switch (id){
             case R.id.Viewratings:
-                if(choosecollege.getText().toString().trim().length() == 0) {
-                    Toast.makeText(ReviewsActivity.this, "Please Choose the college", Toast.LENGTH_SHORT).show();
-                }else {
+                if(choosecollege.getText().toString()!=null) {
                     etxtplacement.setVisibility(View.VISIBLE);
                     etxtplacement.setText("Your rating is: " + eratingplacement.getRating());
                     etxtfaculty.setVisibility(View.VISIBLE);
@@ -128,6 +118,9 @@ public class ReviewsActivity extends AppCompatActivity implements View.OnClickLi
                     etxtreputation.setText("Your rating is: " + eratingreputation.getRating());
                     etxtcampus.setVisibility(View.VISIBLE);
                     etxtcampus.setText("Your rating is: " + eratingcampus.getRating());
+
+                }else {
+                    Toast.makeText(ReviewsActivity.this, "Please Choose the college", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
@@ -136,19 +129,24 @@ public class ReviewsActivity extends AppCompatActivity implements View.OnClickLi
                 startActivityForResult(intent, 101);
                 //finish();
                 break;
-            case R.id.btn_submit:
-                rating.placementrating=etxtplacement.getText().toString();
-                rating.facultyrating=etxtfaculty.getText().toString();
-                rating.reputationrating=etxtreputation.getText().toString();
-                rating.campusrating=etxtcampus.getText().toString();
-                saveRatingInCloud();
-                break;
+            case R.id.submit:
+                if(choosecollege.getText().toString()==null) {
+                    Toast.makeText(ReviewsActivity.this, "Please Choose the college", Toast.LENGTH_SHORT).show();
+                }else {
+                    rating.placementrating = etxtplacement.getText().toString();
+                    rating.facultyrating = etxtfaculty.getText().toString();
+                    rating.reputationrating = etxtreputation.getText().toString();
+                    rating.campusrating = etxtcampus.getText().toString();
+                    saveRatingInCloud();
+                    break;
+                }
         }
 
     }
 
     private void saveRatingInCloud() {
-        db.collection("Colleges").document(user.getUid())
+        String uid = auth.getCurrentUser().getUid();
+        db.collection("Colleges").document(uid)
                 .collection("Reviews").add(rating)
                 .addOnCompleteListener(this, new OnCompleteListener<DocumentReference>() {
                     @Override

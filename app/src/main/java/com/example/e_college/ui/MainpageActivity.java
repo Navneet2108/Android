@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -90,14 +91,6 @@ public class MainpageActivity extends AppCompatActivity
         getCurrentStudentDetail();
 
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 102 && resultCode == 202) {
-            String name = data.getStringExtra("keycollegename");
-            btncolleges.setText(name);
-        }
-    }
-
 
     void getCurrentStudentDetail(){
 
@@ -195,6 +188,14 @@ public class MainpageActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
        return true;
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 101 && resultCode == 202) {
+            String name = data.getStringExtra("keycollegename");
+            btncolleges.setText(name);
+        }
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -202,18 +203,16 @@ public class MainpageActivity extends AppCompatActivity
 
         switch(id){
             case R.id.FindColleges:
-
                 Intent intent = new Intent(MainpageActivity.this, AllCollegeActivity.class);
-                startActivityForResult(intent, 102);
+                startActivityForResult(intent, 101);
                 break;
 
             case R.id.FindCourses:
-                if(btncolleges.getText().toString()!=null){
+                String name=btncolleges.getText().toString().trim();
+                if(TextUtils.isEmpty(name)){
                     Toast.makeText(this,"Please Select your college",Toast.LENGTH_LONG).show();
-
                 }else {
                     Intent course = new Intent(MainpageActivity.this, CoursesActivity.class);
-                    String name=btncolleges.getText().toString();
                     course.putExtra("keycollege",name);
                     startActivity(course);
                 }

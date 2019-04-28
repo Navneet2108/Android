@@ -81,7 +81,8 @@ public class CoursesActivity extends AppCompatActivity implements OnRecyclerItem
     }
 
     private void fetchCourseFromCloud() {
-        db.collection("Colleges").document(firebaseUser.getUid()).collection("Courses").get()
+        String uid = auth.getCurrentUser().getUid();
+        db.collection("Colleges").document(uid).collection("Courses").get()
                 .addOnCompleteListener(this, new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {

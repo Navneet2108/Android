@@ -113,6 +113,9 @@ Student student;
 
     @Override
     public void onItemClick(int position) {
+        this.position = position;
+        college = colleges.get(position);
+        Toast.makeText(this, "You Clicked on Position:" + position, Toast.LENGTH_LONG).show();
 
     }
 }
