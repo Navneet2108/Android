@@ -1,7 +1,9 @@
 package com.example.e_college.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,7 +35,7 @@ public class AllUserActivity extends AppCompatActivity implements OnRecyclerItem
     int position;
     UserAdapter userAdapter;
     User user;
-
+String id;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     FirebaseFirestore db;
@@ -94,17 +96,40 @@ public class AllUserActivity extends AppCompatActivity implements OnRecyclerItem
 
                 });
     }
+    void showOptions() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        String[] items = {"Show Colleges","Show Guidelines","Cancel"};
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        Intent intent=new Intent(AllUserActivity.this, AllCollegeActivity.class);
+                        intent.putExtra("keyid",id);
+                        //intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        Intent guidelines= new Intent(AllUserActivity.this, AllGuidelinesActivity.class);
+                        guidelines.putExtra("keyid",id);
+                        startActivity(guidelines);
+                        break;
+                }
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
 
     @Override
     public void onItemClick(int position) {
         this.position = position;
         user = userArrayList.get(position);
-        String id=user.docid;
-        Toast.makeText(this, "You Clicked on Position:" + position, Toast.LENGTH_LONG).show();
-        Intent intent=new Intent(AllUserActivity.this, AllCollegeActivity.class);
-        intent.putExtra("keyid",id);
-        intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
-        startActivity(intent);
+         id=user.docid;
+         showOptions();
+       // Toast.makeText(this, "You Clicked on Position:" + position, Toast.LENGTH_LONG).show();
+
     }
 
 

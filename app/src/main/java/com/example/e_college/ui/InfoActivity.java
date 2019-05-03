@@ -184,6 +184,8 @@ public class InfoActivity extends AppCompatActivity {
         DatabaseReference uidRef = rootRef.child("College").child(id);
 
         DatabaseReference cid = uidRef.child("CollegeDetails").child(uid);
+        Toast.makeText(InfoActivity.this, "get here "+cid, Toast.LENGTH_SHORT).show();
+
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -196,25 +198,26 @@ public class InfoActivity extends AppCompatActivity {
                 String address = dataSnapshot.child("address").getValue().toString();
                 String website = dataSnapshot.child("website").getValue().toString();
 
+                Toast.makeText(InfoActivity.this, "get here "+website, Toast.LENGTH_SHORT).show();
 
-                etxtinfo.setText(info);
-                txtnewdeadline.setText(newDeadline);
-                txttransferdeadline.setText(transferDeadline);
-                newStudent.setText(newstufee);
-                transerStudent.setText(transferstufee);
-                etxtphone.setText(phone);
-                etxtaddress.setText(address);
-                etxtwebsite.setText(website);
+//                etxtinfo.setText(info);
+//                txtnewdeadline.setText(newDeadline);
+//                txttransferdeadline.setText(transferDeadline);
+//                newStudent.setText(newstufee);
+//                transerStudent.setText(transferstufee);
+//                etxtphone.setText(phone);
+//                etxtaddress.setText(address);
+//                etxtwebsite.setText(website);
 
                 //Log.d(TAG, userName);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                //Log.d(TAG, databaseError.getMessage()); //Don't ignore errors!
+                Toast.makeText(InfoActivity.this, "some error", Toast.LENGTH_SHORT).show();
             }
         };
-        uidRef.addListenerForSingleValueEvent(valueEventListener);
+        cid.addListenerForSingleValueEvent(valueEventListener);
        /* Intent rcv = getIntent();
         String id = rcv.getStringExtra("keyid");
         Toast.makeText(this,"get id" +id,Toast.LENGTH_LONG).show();

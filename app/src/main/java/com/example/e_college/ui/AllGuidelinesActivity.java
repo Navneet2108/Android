@@ -69,7 +69,9 @@ public class AllGuidelinesActivity extends AppCompatActivity implements OnRecycl
         }
     }
     void fetchGuidelinesFromCloudDb() {
-        db.collection("User").document(firebaseUser.getUid()).collection("College").document(firebaseUser.getUid()).collection("AdmissionGuidelines").get()
+        Intent rcv=getIntent();
+        String id=rcv.getStringExtra("keyid");
+        db.collection("User").document(id).collection("AdmissionGuidelines").get()
                 .addOnCompleteListener(this, new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -90,7 +92,7 @@ public class AllGuidelinesActivity extends AppCompatActivity implements OnRecycl
                             guidelinesAdapter = new GuidelinesAdapter(AllGuidelinesActivity.this,R.layout.guidelines_item, guidelinesArrayList);
                             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(AllGuidelinesActivity.this);
                             recyclerView.setAdapter(guidelinesAdapter);
-                           guidelinesAdapter.setOnRecyclerItemClickListener((OnRecyclerItemClickListener) AllGuidelinesActivity.this);
+                            guidelinesAdapter.setOnRecyclerItemClickListener((OnRecyclerItemClickListener) AllGuidelinesActivity.this);
 
                             recyclerView.setLayoutManager(linearLayoutManager);
 
@@ -101,7 +103,7 @@ public class AllGuidelinesActivity extends AppCompatActivity implements OnRecycl
 
                 });
     }
-    void showGuidelinesDetails() {
+   /* void showGuidelinesDetails() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Details:");
         builder.setMessage(guidelines.toString());
@@ -157,7 +159,7 @@ public class AllGuidelinesActivity extends AppCompatActivity implements OnRecycl
                         break;*/
 
 
-                    case 2:
+                   /* case 2:
                         askForDeletion();
                         break;
 
@@ -169,13 +171,13 @@ public class AllGuidelinesActivity extends AppCompatActivity implements OnRecycl
         AlertDialog dialog = builder.create();
         dialog.show();
 
-    }
+    }*/
 
     @Override
     public void onItemClick(int position) {
         this.position = position;
         guidelines = guidelinesArrayList.get(position);
-        Toast.makeText(this, "You Clicked on Position:" + position, Toast.LENGTH_LONG).show();
-        showOptions();
+        //Toast.makeText(this, "You Clicked on Position:" + position, Toast.LENGTH_LONG).show();
+        //showOptions();
     }
 }

@@ -202,7 +202,7 @@ void initViews(){
             break;
 
         case R.id.admissionGuidelines:
-            Intent guidelines=new Intent(PersonalInfoActivity.this,AllGuidelinesActivity.class);
+            Intent guidelines=new Intent(PersonalInfoActivity.this,AllUserActivity.class);
             startActivity(guidelines);
 
             break;
