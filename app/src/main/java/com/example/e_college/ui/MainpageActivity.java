@@ -48,7 +48,20 @@ public class MainpageActivity extends AppCompatActivity
        // btnlocation=findViewById(R.id.Location);
         btncolleges=findViewById(R.id.FindColleges);
 
-        btnCourses.setOnClickListener(this);
+        btnCourses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(btncolleges.getText().toString().trim().length()!=0){
+                    String name=btncolleges.getText().toString();
+                    Intent course = new Intent(MainpageActivity.this, CoursesActivity.class);
+                    course.putExtra("keycollege",name);
+                    startActivity(course);
+
+                }else {
+                    Toast.makeText(MainpageActivity.this, "Please select college", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         btncolleges.setOnClickListener(this);
 
 
@@ -163,7 +176,7 @@ public class MainpageActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_colleges) {
-            Intent intent=new Intent(MainpageActivity.this,AllCollegeActivity.class);
+            Intent intent=new Intent(MainpageActivity.this,AllUserActivity.class);
             startActivity(intent);
 
 
@@ -203,19 +216,12 @@ public class MainpageActivity extends AppCompatActivity
 
         switch(id){
             case R.id.FindColleges:
-                Intent intent = new Intent(MainpageActivity.this, AllCollegeActivity.class);
+                Intent intent = new Intent(MainpageActivity.this, AllUserActivity.class);
                 startActivityForResult(intent, 101);
                 break;
 
             case R.id.FindCourses:
-                String name=btncolleges.getText().toString().trim();
-                if(TextUtils.isEmpty(name)){
-                    Toast.makeText(this,"Please Select your college",Toast.LENGTH_LONG).show();
-                }else {
-                    Intent course = new Intent(MainpageActivity.this, CoursesActivity.class);
-                    course.putExtra("keycollege",name);
-                    startActivity(course);
-                }
+
                 break;
         }
     }

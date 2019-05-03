@@ -59,7 +59,7 @@ public class CollegeAdapter extends RecyclerView.Adapter<CollegeAdapter.ViewHold
     public int getItemCount() {
         return objects.size();
     }
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtTitle;
         TextView txtCity;
         TextView txtState;

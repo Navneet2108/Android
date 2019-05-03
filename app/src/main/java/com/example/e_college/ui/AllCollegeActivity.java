@@ -30,18 +30,18 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllCollegeActivity extends AppCompatActivity  implements OnRecyclerItemClickListener {
+public class    AllCollegeActivity extends AppCompatActivity  implements OnRecyclerItemClickListener {
     RecyclerView recyclerView;
     ArrayList<College> colleges;
     int position;
     CollegeAdapter collegeAdapter;
     College college;
-
+    String id;
+    String name;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     FirebaseFirestore db;
-
-    TextView txtcollege;
+    int status=0;
 
     void initViews() {
         recyclerView = findViewById(R.id.recyclerView);
@@ -51,11 +51,7 @@ public class AllCollegeActivity extends AppCompatActivity  implements OnRecycler
         db = FirebaseFirestore.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
-        txtcollege=findViewById(R.id.textViewTitle);
-
         college = new College();
-
-
     }
 
     @Override
@@ -72,7 +68,9 @@ public class AllCollegeActivity extends AppCompatActivity  implements OnRecycler
     }
 
     void fetchCollegesFromCloudDb() {
-        db.collection("Colleges").get()
+        Intent rcv=getIntent();
+        String id=rcv.getStringExtra("keyid");
+        db.collection("User").document(id).collection("College").get()
                 .addOnCompleteListener(this, new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -105,102 +103,45 @@ public class AllCollegeActivity extends AppCompatActivity  implements OnRecycler
                 });
     }
 
-    void showCollegeDetails() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(college.name + "Details:");
-        builder.setMessage(college.toString());
-        builder.setPositiveButton("Done", null);
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
 
     @Override
     public void onItemClick(int position) {
         this.position = position;
         college = colleges.get(position);
+        id=college.docID;
+        name=college.name;
         Toast.makeText(this, "You Clicked on Position:" + position, Toast.LENGTH_LONG).show();
-
-       // setResult(201,(new Intent(this,ReviewsActivity.class)).putExtra("keycollegename",college.name));
-       // setResult(202,(new Intent(this,MainpageActivity.class)).putExtra("keycollegename1",college.name));
+        showAlert();
 
 
-
-           // Intent data = new Intent(AllCollegeActivity.this, ReviewsActivity.class);
-            //data.putExtra("keycollegename", college.name);
-           // setResult(201, data);
-            //finish();
-
-
-            Intent data1 = new Intent(AllCollegeActivity.this, MainpageActivity.class);
-            data1.putExtra("keycollegename", college.name);
-            setResult(202, data1);
-            finish();
-
-        }
-
-
-
-    
-
-    void deleteCollegesFromCloudDB(){
-        db.collection("colleges").document(college.docID)
-                .delete()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isComplete()){
-                            Toast.makeText(AllCollegeActivity.this,"Deletion Finished",Toast.LENGTH_LONG).show();
-                            colleges.remove(position);
-                            collegeAdapter.notifyDataSetChanged(); // Refresh Your RecyclerView
-                        }else{
-                            Toast.makeText(AllCollegeActivity.this,"Deletion Failed",Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
     }
-    void askForDeletion(){
+
+    void showAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete "+college.name);
-        builder.setMessage("Are You Sure ?");
-        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                deleteCollegesFromCloudDB();
-            }
-        });
-        builder.setNegativeButton("Cancel",null);
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
-    void showOptions() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        String[] items = {"View " + college.name, "Update " + college.name, "Delete " + college.name,"Add courses","Add College Info","Cancel"};
+        String[] items = {"Show Details", "Choose college For Reviews","Choose college for Courses","Cancel"};
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case 0:
-                        showCollegeDetails();
+                        Intent intent=new Intent(AllCollegeActivity.this, InfoActivity.class);
+                        intent.putExtra("keyid",id);
+                        startActivity(intent);
                         break;
 
                     case 1:
-                       // Intent intent = new Intent(AllCollegeActivity.this, CollegeActivity.class);
-                        //intent.putExtra("keyColleges", colleges);
-                        //startActivity(intent);
+                        Intent data1 = new Intent(AllCollegeActivity.this, ReviewsActivity.class);
+                        data1.putExtra("keycollegename",name);
+                        setResult(201, data1);
+                        finish();
                         break;
 
                     case 2:
-                        askForDeletion();
+                        Intent data = new Intent(AllCollegeActivity.this, MainpageActivity.class);
+                        //data.putExtra("keycollegename",name);
+                        //setResult(202, data1);
+                        finish();
                         break;
-
-                    case 3:
-                       // Intent intent1 = new Intent(AllCollegeActivity.this,AddCoursesActivity.class);
-                        //startActivity(intent1);
-                        break;
-                    case 4:
-                        //showCollegeDetails();
-                        break;
-
 
                 }
             }

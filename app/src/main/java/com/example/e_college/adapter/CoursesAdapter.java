@@ -18,19 +18,17 @@ import com.example.e_college.ui.CoursesActivity;
 import java.util.ArrayList;
 
 public class CoursesAdapter  extends RecyclerView.Adapter<CoursesAdapter.ViewHolder> {
-
     Context context;
     int resources;
     ArrayList<Courses> objects;
 
     OnRecyclerItemClickListener recyclerItemClickListener;
 
-    public CoursesAdapter(CoursesActivity coursesActivity, int course, ArrayList<Courses> coursesArrayList) {
-        this.context=coursesActivity;
-        this.resources=course;
-        this.objects=coursesArrayList;
+    public CoursesAdapter(CoursesActivity context, int list_item, ArrayList<Courses> coursesArrayList) {
+        this.context = context;
+        this.resources = list_item;
+        this.objects = coursesArrayList;
     }
-
 
     public void setOnRecyclerItemClickListener(OnRecyclerItemClickListener recyclerItemClickListener) {
         this.recyclerItemClickListener = recyclerItemClickListener;
@@ -40,7 +38,7 @@ public class CoursesAdapter  extends RecyclerView.Adapter<CoursesAdapter.ViewHol
 
     @NonNull
     @Override
-    public CoursesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CoursesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View view = LayoutInflater.from(context).inflate(resources, parent, false);
         final CoursesAdapter.ViewHolder holder = new CoursesAdapter.ViewHolder(view);
         view.setOnClickListener(new View.OnClickListener() {
@@ -53,9 +51,10 @@ public class CoursesAdapter  extends RecyclerView.Adapter<CoursesAdapter.ViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CoursesAdapter.ViewHolder viewHolder, int position) {
-        Courses courses = objects.get(position);
+    public void onBindViewHolder(@NonNull CoursesAdapter.ViewHolder viewHolder, int i) {
+        Courses courses = objects.get(i);
         viewHolder.txtTitle.setText(courses.Name);
+        viewHolder.txtCoursefee.setText(courses.coursefees);
     }
 
     @Override
@@ -65,10 +64,12 @@ public class CoursesAdapter  extends RecyclerView.Adapter<CoursesAdapter.ViewHol
 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtTitle;
+        TextView txtCoursefee;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtTitle = itemView.findViewById(R.id.textViewTitleCourse);
+            txtCoursefee=itemView.findViewById(R.id.textViewTitleCoursefee);
         }
     }
 }

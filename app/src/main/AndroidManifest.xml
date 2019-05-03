@@ -15,17 +15,14 @@
         android:roundIcon="@drawable/ic_scholarship"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.InfoActivity"></activity>
+        <activity android:name=".ui.AllUserActivity"></activity>
+        <activity android:name=".ui.InfoActivity" />
         <activity android:name=".ui.PaymentCardActivity" />
-
-        <activity android:name=".ui.AdmissionGuidelines" />
-        <activity android:name=".ui.StudentProfile" />
-
-        <!--<activity android:name=".ui.AddLocationActivity" />-->
+        <activity android:name=".ui.AllGuidelinesActivity" />
+        <activity android:name=".ui.StudentProfile" /> <!-- <activity android:name=".ui.AddLocationActivity" /> -->
         <activity android:name=".ui.AllCollegeActivity" />
-        <activity android:name=".ui.CoursesActivity" />
-        <!--<activity android:name=".ui.AddCoursesActivity" />-->
-        <!--<activity android:name=".ui.CollegeActivity" />-->
+        <activity android:name=".ui.CoursesActivity" /> <!-- <activity android:name=".ui.AddCoursesActivity" /> -->
+        <!-- <activity android:name=".ui.CollegeActivity" /> -->
         <activity android:name=".ui.PersonalInfoActivity" />
         <activity android:name=".ui.ReviewsActivity" />
         <activity android:name=".ui.AppliedColleges" />
@@ -43,8 +40,6 @@
             android:label="@string/title_activity_mainpage"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.LoginActivity" />
-
-
     </application>
 
 </manifest>

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.e_college.R;
 import com.example.e_college.model.Rating;
 import com.example.e_college.model.Student;
+import com.example.e_college.model.Util;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,11 +41,11 @@ public class ReviewsActivity extends AppCompatActivity implements View.OnClickLi
         eratingreputation = (RatingBar) findViewById(R.id.reputation_rating_bar);
         eratingcampus = (RatingBar) findViewById(R.id.campus_rating_bar);
 
-        submit = (Button) findViewById(R.id.submit);
-        choosecollege = (Button) findViewById(R.id.choosecollege);
-        viewratings = (Button) findViewById(R.id.Viewratings);
+        submit = findViewById(R.id.submit);
+        choosecollege = findViewById(R.id.choosecollege);
+        viewratings = findViewById(R.id.Viewratings);
 
-        etxtstudentname =  findViewById(R.id.etxtStudent);
+        etxtstudentname = findViewById(R.id.etxtStudent);
         etxtplacement= findViewById(R.id.placement);
         etxtfaculty= findViewById(R.id.faculty);
         etxtreputation= findViewById(R.id.Reputation);
@@ -61,6 +62,10 @@ public class ReviewsActivity extends AppCompatActivity implements View.OnClickLi
         submit.setOnClickListener(this);
         choosecollege.setOnClickListener(this);
         viewratings.setOnClickListener(this);
+
+       // Intent rcv=getIntent();
+        //String name=rcv.getStringExtra("keycollegename");
+        //choosecollege.setText(name);
 
     }
 
@@ -109,7 +114,7 @@ public class ReviewsActivity extends AppCompatActivity implements View.OnClickLi
 
         switch (id){
             case R.id.Viewratings:
-                if(choosecollege.getText().toString()!=null) {
+                if(choosecollege.getText().toString().trim().length()!=0) {
                     etxtplacement.setVisibility(View.VISIBLE);
                     etxtplacement.setText("Your rating is: " + eratingplacement.getRating());
                     etxtfaculty.setVisibility(View.VISIBLE);
@@ -125,28 +130,33 @@ public class ReviewsActivity extends AppCompatActivity implements View.OnClickLi
                 break;
 
             case R.id.choosecollege:
-                Intent intent = new Intent(ReviewsActivity.this, AllCollegeActivity.class);
+                Intent intent = new Intent(ReviewsActivity.this, AllUserActivity.class);
                 startActivityForResult(intent, 101);
-                //finish();
+                finish();
                 break;
             case R.id.submit:
-                if(choosecollege.getText().toString()==null) {
+                rating.placementrating = etxtplacement.getText().toString();
+                rating.facultyrating = etxtfaculty.getText().toString();
+                rating.reputationrating = etxtreputation.getText().toString();
+                rating.campusrating = etxtcampus.getText().toString();
+
+                if(choosecollege.getText().toString().trim().length()==0) {
                     Toast.makeText(ReviewsActivity.this, "Please Choose the college", Toast.LENGTH_SHORT).show();
                 }else {
-                    rating.placementrating = etxtplacement.getText().toString();
-                    rating.facultyrating = etxtfaculty.getText().toString();
-                    rating.reputationrating = etxtreputation.getText().toString();
-                    rating.campusrating = etxtcampus.getText().toString();
-                    saveRatingInCloud();
-                    break;
+                    if (Util.isInternetConnected(ReviewsActivity.this)) {
+                        saveRatingInCloud();
+                    } else {
+                        Toast.makeText(ReviewsActivity.this, "Please Connect to Internet and try again", Toast.LENGTH_LONG).show();
+                    }
                 }
+                break;
         }
 
     }
 
     private void saveRatingInCloud() {
         String uid = auth.getCurrentUser().getUid();
-        db.collection("Colleges").document(uid)
+        db.collection("User").document(user.getUid()).collection("College").document(uid)
                 .collection("Reviews").add(rating)
                 .addOnCompleteListener(this, new OnCompleteListener<DocumentReference>() {
                     @Override
