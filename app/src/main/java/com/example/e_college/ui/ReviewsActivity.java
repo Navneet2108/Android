@@ -1,6 +1,8 @@
 package com.example.e_college.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +36,12 @@ public class ReviewsActivity extends AppCompatActivity implements View.OnClickLi
     Student student;
 
     Rating rating;
+SharedPreferences sharedPreferences;
+    public static final String MyPREFERENCES = "MyPreferences" ;
+    public static final String collegeid = "collegeid" ;
+    public static final String collegeKey= "collegeKey";
+    String Name;
+String cid;
 
     void initViews(){
         eratingplacement = (RatingBar) findViewById(R.id.placement_rating_bar);
@@ -63,9 +71,15 @@ public class ReviewsActivity extends AppCompatActivity implements View.OnClickLi
         choosecollege.setOnClickListener(this);
         viewratings.setOnClickListener(this);
 
-       // Intent rcv=getIntent();
-        //String name=rcv.getStringExtra("keycollegename");
-        //choosecollege.setText(name);
+        sharedPreferences=getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+         Name=sharedPreferences.getString(collegeKey,"");
+         cid=sharedPreferences.getString(collegeid,"");
+
+
+         choosecollege.setText(Name);
+
+        //id=getIntent().getStringExtra(collegeId);
+
 
     }
 
@@ -98,15 +112,29 @@ public class ReviewsActivity extends AppCompatActivity implements View.OnClickLi
                });
    }
 
-    @Override
+  /* @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 101 && resultCode == 201) {
-            String name = data.getStringExtra("keycollegename");
-            choosecollege.setText(name);
+             cid = data.getStringExtra("KeyCollege");
+
         }
     }
-
-
+*/
+   void saveRatingInCloud(){
+       Toast.makeText(this, "cid is here "+cid, Toast.LENGTH_SHORT).show();
+       db.collection("User").document(user.getUid()).collection("College").document(cid)
+               .collection("Reviews").add(rating).addOnCompleteListener(this
+               , new OnCompleteListener<DocumentReference>() {
+                   @Override
+                   public void onComplete(@NonNull Task<DocumentReference> task) {
+                       if(task.isComplete()){
+                           Toast.makeText(ReviewsActivity.this,"Reviews are successfully added",Toast.LENGTH_LONG).show();
+                           Intent intent=new Intent(ReviewsActivity.this,MainpageActivity.class);
+                           startActivity(intent);
+                       }
+                   }
+               });
+   }
 
             @Override
     public void onClick(View v) {
@@ -145,6 +173,7 @@ public class ReviewsActivity extends AppCompatActivity implements View.OnClickLi
                 }else {
                     if (Util.isInternetConnected(ReviewsActivity.this)) {
                         saveRatingInCloud();
+
                     } else {
                         Toast.makeText(ReviewsActivity.this, "Please Connect to Internet and try again", Toast.LENGTH_LONG).show();
                     }
@@ -154,20 +183,5 @@ public class ReviewsActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    private void saveRatingInCloud() {
-        String uid = auth.getCurrentUser().getUid();
-        db.collection("User").document(user.getUid()).collection("College").document(uid)
-                .collection("Reviews").add(rating)
-                .addOnCompleteListener(this, new OnCompleteListener<DocumentReference>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentReference> task) {
-                        if (task.isComplete()) {
-                            Toast.makeText(ReviewsActivity.this, "Reviews are successfully added", Toast.LENGTH_LONG).show();
-                            Intent intent=new Intent(ReviewsActivity.this,MainpageActivity.class);
-                            startActivity(intent);
-                        }
-                    }
-                });
 
-    }
 }

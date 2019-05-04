@@ -1,8 +1,10 @@
 package com.example.e_college.ui;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -33,7 +35,12 @@ import java.util.List;
 
 public class CoursesActivity extends AppCompatActivity implements OnRecyclerItemClickListener {
     Courses courses;
-
+    SharedPreferences sharedPreferences;
+    public static final String MyPREFERENCES = "MyPreferences" ;
+    public static final String collegeId = "IDKey";
+    public static final String collegeKey= "collegeKey";
+    String Name;
+    String cid;
     FirebaseUser firebaseUser;
     FirebaseAuth auth;
     FirebaseFirestore db;
@@ -44,12 +51,13 @@ public class CoursesActivity extends AppCompatActivity implements OnRecyclerItem
     int position;
     CoursesAdapter coursesAdapter;
     ProgressDialog progressDialog;
-    
+
+    //String uid;
     public void initViews(){
        
-       courses = new Courses();
+         courses = new Courses();
 
-user=new User();
+        user=new User();
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -57,6 +65,10 @@ user=new User();
 
         recyclerView = findViewById(R.id.CourseRecyclerView);
         recyclerView.setAdapter(coursesAdapter);
+        sharedPreferences=getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        Name=sharedPreferences.getString(collegeKey,"");
+        cid=sharedPreferences.getString(collegeId,"");
+
     }
 
 
@@ -65,11 +77,13 @@ user=new User();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courses);
         initViews();
+
         fetchCourseFromCloud();
     }
 
     private void fetchCourseFromCloud() {
-        db.collection("User").document(firebaseUser.getUid()).collection("College").document(firebaseUser.getUid()).collection("Courses").get()
+        Toast.makeText(CoursesActivity.this, "id is here "+cid, Toast.LENGTH_SHORT).show();
+        db.collection("User").document(firebaseUser.getUid()).collection("College").document(cid).collection("Courses").get()
                 .addOnCompleteListener(this, new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -106,10 +120,10 @@ user=new User();
         this.position = position;
         courses = coursesArrayList.get(position);
         Toast.makeText(this,"You Clicked on Position:"+position,Toast.LENGTH_LONG).show();
-        showOptions();
+        //showOptions();
 
     }
-    void deleteCoursesFromCloudDB(){
+   /* void deleteCoursesFromCloudDB(){
 
         db.collection("User").document(firebaseUser.getUid()).collection("College").document(firebaseUser.getUid()).collection("Courses").document(courses.doc_Id)
                 .delete()
@@ -140,7 +154,7 @@ user=new User();
         builder.setNegativeButton("Cancel",null);
         AlertDialog dialog = builder.create();
         dialog.show();
-    }
+    }*/
     void showOptions() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         String[] items = {"Update " + courses.Name, "Delete " + courses.Name,"Cancel"};
@@ -155,7 +169,7 @@ user=new User();
                         break;
 
                     case 1:
-                        askForDeletion();
+                       // askForDeletion();
                         break;
                 }
             }

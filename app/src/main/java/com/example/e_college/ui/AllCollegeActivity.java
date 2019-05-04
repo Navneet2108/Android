@@ -1,7 +1,9 @@
 package com.example.e_college.ui;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -30,7 +32,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class    AllCollegeActivity extends AppCompatActivity  implements OnRecyclerItemClickListener {
+public class  AllCollegeActivity extends AppCompatActivity  implements OnRecyclerItemClickListener {
     RecyclerView recyclerView;
     ArrayList<College> colleges;
     int position;
@@ -43,6 +45,12 @@ public class    AllCollegeActivity extends AppCompatActivity  implements OnRecyc
     FirebaseFirestore db;
     int status=0;
 
+    SharedPreferences sharedPreferences;
+    public static final String MyPREFERENCES = "MyPreferences" ;
+    public static final String collegeKey= "collegeKey";
+    public static final String collegeid= "collegeid";
+    String cid;
+
     void initViews() {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setAdapter(collegeAdapter);
@@ -52,6 +60,8 @@ public class    AllCollegeActivity extends AppCompatActivity  implements OnRecyc
         firebaseUser = firebaseAuth.getCurrentUser();
 
         college = new College();
+
+        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
     }
 
     @Override
@@ -108,9 +118,15 @@ public class    AllCollegeActivity extends AppCompatActivity  implements OnRecyc
     public void onItemClick(int position) {
         this.position = position;
         college = colleges.get(position);
-        id=college.docID;
-        name=college.name;
-        Toast.makeText(this, "You Clicked on Position:" + position, Toast.LENGTH_LONG).show();
+        //String UserInfo = colleges.get(position).toString();
+         //userId = UserInfo.substring(0, UserInfo .indexOf(" "));
+         name=college.name;
+         cid=college.docID;
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(collegeKey, name);
+        editor.putString(collegeid,cid);
+        editor.apply();
+        Toast.makeText(this, "Thanks", Toast.LENGTH_LONG).show();
         showAlert();
 
 
@@ -131,15 +147,18 @@ public class    AllCollegeActivity extends AppCompatActivity  implements OnRecyc
 
                     case 1:
                         Intent data1 = new Intent(AllCollegeActivity.this, ReviewsActivity.class);
-                        data1.putExtra("keycollegename",name);
-                        setResult(201, data1);
+                       data1.putExtra(collegeKey,name);
+                       data1.putExtra(collegeid,cid);
+                        //setResult(201,data1);
+                       startActivity(data1);
                         finish();
                         break;
 
                     case 2:
+
                         Intent data = new Intent(AllCollegeActivity.this, MainpageActivity.class);
-                        //data.putExtra("keycollegename",name);
-                        //setResult(202, data1);
+                        data.putExtra(collegeKey,name);
+                        startActivity(data);
                         finish();
                         break;
 

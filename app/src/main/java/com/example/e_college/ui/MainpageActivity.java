@@ -1,6 +1,8 @@
 package com.example.e_college.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -42,12 +44,17 @@ public class MainpageActivity extends AppCompatActivity
     FirebaseFirestore firebaseFirestore;
 
     Button btnCourses,btnlocation,btncolleges;
-
+SharedPreferences sharedPreferences;
+    public static final String MyPREFERENCES = "MyPreferences" ;
+    public static final String collegeKey= "collegeKey";
+   public static final String collegeId = "IDKey";
+    String Name;
+    String cid;
     void initViews(){
         btnCourses=findViewById(R.id.FindCourses);
        // btnlocation=findViewById(R.id.Location);
         btncolleges=findViewById(R.id.FindColleges);
-
+       // btncolleges.setText("FIND COLLEGES");
         btnCourses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +71,10 @@ public class MainpageActivity extends AppCompatActivity
         });
         btncolleges.setOnClickListener(this);
 
+        sharedPreferences=getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        Name=sharedPreferences.getString(collegeKey,"");
+        cid=sharedPreferences.getString(collegeId,"");
+        btncolleges.setText(Name);
 
     }
 
@@ -222,6 +233,14 @@ public class MainpageActivity extends AppCompatActivity
 
             case R.id.FindCourses:
 
+            if(btncolleges.getText().toString().trim().length()!=0){
+                Intent intent1 = new Intent(MainpageActivity.this, CoursesActivity.class);
+                intent1.putExtra(collegeId,cid);
+               startActivity(intent1);
+
+            }else{
+                Toast.makeText(MainpageActivity.this, "Please choose college", Toast.LENGTH_SHORT).show();
+            }
                 break;
         }
     }
