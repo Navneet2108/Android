@@ -25,7 +25,7 @@
         <!-- <activity android:name=".ui.CollegeActivity" /> -->
         <activity android:name=".ui.PersonalInfoActivity" />
         <activity android:name=".ui.ReviewsActivity" />
-        <activity android:name=".ui.AppliedColleges" />
+
         <activity android:name=".ui.CollegeSplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -13,18 +13,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.e_college.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Locale;
 
 public class CollegeSplash extends AppCompatActivity {
     String TAG="CollegeSplash";
     TextToSpeech tts;
-
+    FirebaseAuth auth;
+    FirebaseUser user;
     TextView txtTitle;
 
     void initViews(){
         txtTitle=findViewById(R.id.textViewTitle);
-
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
         tts=new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -65,7 +69,11 @@ public class CollegeSplash extends AppCompatActivity {
         Animation animation= AnimationUtils.loadAnimation(this, R.anim.alpha_anim);
         txtTitle.startAnimation(animation);
 
-        handler.sendEmptyMessageDelayed(101,5000);
+        if(user==null){
+            handler.sendEmptyMessageDelayed(101,5000);
+        }else{
+            handler.sendEmptyMessageDelayed(202,5000);
+        }
     }
 
     Handler handler = new Handler(){
@@ -75,7 +83,12 @@ public class CollegeSplash extends AppCompatActivity {
                 Intent intent = new Intent(CollegeSplash.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
-            }
+            } else{
+            Intent intent=new Intent(CollegeSplash.this,MainpageActivity.class);
+            startActivity(intent);
+            finish();
+
+        }
         }
     };
 }

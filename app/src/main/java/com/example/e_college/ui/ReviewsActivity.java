@@ -36,12 +36,13 @@ public class ReviewsActivity extends AppCompatActivity implements View.OnClickLi
     Student student;
 
     Rating rating;
-SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferences;
     public static final String MyPREFERENCES = "MyPreferences" ;
     public static final String collegeid = "collegeid" ;
     public static final String collegeKey= "collegeKey";
     String Name;
-String cid;
+    String cid;
+    String id;
 
     void initViews(){
         eratingplacement = (RatingBar) findViewById(R.id.placement_rating_bar);
@@ -77,10 +78,12 @@ String cid;
 
 
          choosecollege.setText(Name);
+         rating.collegeid=cid;
 
-        //id=getIntent().getStringExtra(collegeId);
 
-
+         Intent rcv=getIntent();
+        id=rcv.getStringExtra("userid");
+        rating.userid=id;
     }
 
     @Override
@@ -120,10 +123,10 @@ String cid;
         }
     }
 */
+
    void saveRatingInCloud(){
        Toast.makeText(this, "cid is here "+cid, Toast.LENGTH_SHORT).show();
-       db.collection("User").document(user.getUid()).collection("College").document(cid)
-               .collection("Reviews").add(rating).addOnCompleteListener(this
+       db.collection("Reviews").add(rating.collegeid).addOnCompleteListener(this
                , new OnCompleteListener<DocumentReference>() {
                    @Override
                    public void onComplete(@NonNull Task<DocumentReference> task) {

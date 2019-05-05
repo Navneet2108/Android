@@ -3,7 +3,7 @@ package com.example.e_college.model;
 import java.io.Serializable;
 
 public class CollegeInfo implements Serializable {
-   public String docid;
+    public  String docid;
    public String info;
     public String newstufee;
     public  String transferstufee;

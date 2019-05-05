@@ -38,7 +38,7 @@ public class  AllCollegeActivity extends AppCompatActivity  implements OnRecycle
     int position;
     CollegeAdapter collegeAdapter;
     College college;
-    String id;
+
     String name;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -50,6 +50,7 @@ public class  AllCollegeActivity extends AppCompatActivity  implements OnRecycle
     public static final String collegeKey= "collegeKey";
     public static final String collegeid= "collegeid";
     String cid;
+    String id;
 
     void initViews() {
         recyclerView = findViewById(R.id.recyclerView);
@@ -79,7 +80,7 @@ public class  AllCollegeActivity extends AppCompatActivity  implements OnRecycle
 
     void fetchCollegesFromCloudDb() {
         Intent rcv=getIntent();
-        String id=rcv.getStringExtra("keyid");
+         id=rcv.getStringExtra("keyid");
         db.collection("User").document(id).collection("College").get()
                 .addOnCompleteListener(this, new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -141,7 +142,7 @@ public class  AllCollegeActivity extends AppCompatActivity  implements OnRecycle
                 switch (which) {
                     case 0:
                         Intent intent=new Intent(AllCollegeActivity.this, InfoActivity.class);
-                        intent.putExtra("keyid",id);
+                        intent.putExtra("keyid",cid);
                         startActivity(intent);
                         break;
 
@@ -149,6 +150,7 @@ public class  AllCollegeActivity extends AppCompatActivity  implements OnRecycle
                         Intent data1 = new Intent(AllCollegeActivity.this, ReviewsActivity.class);
                        data1.putExtra(collegeKey,name);
                        data1.putExtra(collegeid,cid);
+                       data1.putExtra("userid",id);
                         //setResult(201,data1);
                        startActivity(data1);
                         finish();

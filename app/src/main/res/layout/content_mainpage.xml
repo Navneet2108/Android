@@ -20,9 +20,26 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:gravity="center"
-        android:text="WELCOME"
+        android:text="WELCOME TO E-COLLEGE"
         android:textColor="@color/colorBlack"
-        android:textSize="40dp"
+        android:textSize="30dp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/texttitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center"
+        android:text="STUDENT HUB"
+        android:textColor="@color/colorBlack"
+        android:textSize="30dp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,19 +59,6 @@
         tools:layout_editor_absoluteX="149dp"
         tools:layout_editor_absoluteY="109dp" />
 
-    <!--<Button-->
-        <!--android:id="@+id/Location"-->
-        <!--android:layout_width="163dp"-->
-        <!--android:layout_height="36dp"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_marginTop="15dp"-->
-        <!--android:background="@color/colorBrite"-->
-        <!--android:text="Location"-->
-        <!--android:textColor="@color/colorBlack"-->
-        <!--android:textSize="20dp"-->
-        <!--tools:layout_editor_absoluteX="149dp"-->
-        <!--tools:layout_editor_absoluteY="109dp" />-->
-
     <Button
         android:id="@+id/FindColleges"
         android:layout_width="163dp"
@@ -68,33 +72,58 @@
         android:textSize="20dp"
         tools:layout_editor_absoluteX="149dp"
         tools:layout_editor_absoluteY="109dp" />
-
-    <android.support.design.widget.TabLayout
+    <Button
+        android:id="@+id/ViewReviews"
+        android:layout_width="163dp"
+        android:layout_height="61dp"
+        android:layout_gravity="center"
         android:layout_marginTop="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBrite">
+        android:background="@color/colorBrite"
+        android:hint="View Reviews"
+        android:textColorHint="@color/colorBlack"
+        android:textColor="@color/colorBlack"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="149dp"
+        tools:layout_editor_absoluteY="109dp" />
+    <Button
+        android:id="@+id/viewGuidenes"
+        android:layout_width="163dp"
+        android:layout_height="61dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorBrite"
+        android:hint="Find Colleges"
+        android:textColorHint="@color/colorBlack"
+        android:textColor="@color/colorBlack"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="149dp"
+        tools:layout_editor_absoluteY="109dp" />
+    <!--<android.support.design.widget.TabLayout-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/colorBrite">-->
 
-        <android.support.design.widget.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/nav_Reviews"
-            android:icon="@drawable/ic_review"
-            android:text="Reviews" />
+        <!--<android.support.design.widget.TabItem-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/nav_Reviews"-->
+            <!--android:icon="@drawable/ic_review"-->
+            <!--android:text="Reviews" />-->
 
-        <android.support.design.widget.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/Appliedcolleges"
-            android:icon="@drawable/ic_telegram"
-            android:text="Applied Colleges" />
+        <!--<android.support.design.widget.TabItem-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/Appliedcolleges"-->
+            <!--android:icon="@drawable/ic_telegram"-->
+            <!--android:text="Applied Colleges" />-->
 
-        <android.support.design.widget.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/Admission"
-            android:icon="@drawable/ic_file"
-            android:text="Admission GuideLines" />
-    </android.support.design.widget.TabLayout>
+        <!--<android.support.design.widget.TabItem-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/Admission"-->
+            <!--android:icon="@drawable/ic_file"-->
+            <!--android:text="Admission GuideLines" />-->
+    <!--</android.support.design.widget.TabLayout>-->
 
 </LinearLayout>
